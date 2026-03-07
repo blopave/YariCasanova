@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Yari Casanova — Pintura Contemporánea</title>
+  <meta name="description" content="Yari Casanova. Arte figurativo surrealista pop. Animales humanizados en acrílico sobre tela. Gualeguaychú, Entre Ríos.">
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Yari Casanova — Pintura Contemporánea">
+  <meta property="og:description" content="Arte figurativo surrealista pop. Animales humanizados en situaciones cotidianas. Obras en colecciones de Michael Bublé, Presidencia de la Nación y más.">
+  <meta property="og:image" content="img/elegancia-oscura/hero-leon-goat.jpg">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <!-- Lenis smooth scroll -->
+  <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.18/dist/lenis.css">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- Preloader -->
+  <div class="pre" id="pre">
+    <div class="pre-bar">
+      <div class="pre-fill" id="pf"></div>
+    </div>
+  </div>
+
+  <!-- Grain overlay -->
+  <div class="grain"></div>
+
+  <!-- Custom cursor -->
+  <div class="cd" id="cd"></div>
+  <div class="cr" id="cr"></div>
+
+  <!-- Particle canvas -->
+  <canvas class="pcv" id="pcv"></canvas>
+
+  <!-- Progress bar -->
+  <div class="prog" id="prog"></div>
+
+  <!-- Navigation transition overlay -->
+  <div class="nav-trans" id="navTrans">
+    <span class="nav-trans-label" id="navTransLabel"></span>
+    <div class="nav-trans-line"></div>
+  </div>
+
+  <!-- Skip navigation -->
+  <a class="skip-btn" id="skipBtn" href="#">
+    <span class="skip-label" id="skipLabel">Siguiente</span>
+    <span class="skip-arrow"></span>
+  </a>
+
+  <!-- ================================================================
+       LIGHTBOX
+       ================================================================ -->
+  <div class="lb" id="lb">
+    <div class="lb-close" id="lbClose">
+      <svg viewBox="0 0 24 24" fill="none" stroke="rgba(240,235,228,.4)" stroke-width="1.5">
+        <line x1="4" y1="4" x2="20" y2="20"/>
+        <line x1="20" y1="4" x2="4" y2="20"/>
+      </svg>
+    </div>
+    <div class="lb-nav lb-prev" id="lbPrev">
+      <svg viewBox="0 0 24 24" fill="none" stroke="rgba(240,235,228,.3)" stroke-width="1.5">
+        <polyline points="15 18 9 12 15 6"/>
+      </svg>
+    </div>
+    <div class="lb-nav lb-next" id="lbNext">
+      <svg viewBox="0 0 24 24" fill="none" stroke="rgba(240,235,228,.3)" stroke-width="1.5">
+        <polyline points="9 6 15 12 9 18"/>
+      </svg>
+    </div>
+    <div class="lb-img-wrap">
+      <img class="lb-img" id="lbImg" src="" alt="">
+    </div>
+    <div class="lb-info">
+      <p class="lb-med" id="lbMed"></p>
+      <h3 class="lb-title" id="lbTitle"></h3>
+      <p class="lb-sub" id="lbSub"></p>
+      <p class="lb-dim" id="lbDim"></p>
+      <span class="lb-status" id="lbStatus"></span>
+      <a class="lb-cta" href="mailto:yari@casanova.art?subject=Consulta%20sobre%20obra">Consultar disponibilidad</a>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       INTRO SCREEN
+       ================================================================ -->
+  <div class="intro" id="intro">
+    <div class="ic ic-tl"></div>
+    <div class="ic ic-tr"></div>
+    <div class="ic ic-bl"></div>
+    <div class="ic ic-br"></div>
+    <div class="intro-w">
+      <span class="i-n"><span>Y</span><span>a</span><span>r</span><span>i</span></span>
+      <span class="i-s"><span>C</span><span>a</span><span>s</span><span>a</span><span>n</span><span>o</span><span>v</span><span>a</span></span>
+      <div class="i-line"></div>
+      <div class="i-cta">entrar</div>
+    </div>
+  </div>
+
+  <!-- ================================================================
+       NAVIGATION
+       ================================================================ -->
+  <nav class="nav" id="nav">
+    <a class="nav-l" href="#" id="goHome">Yari Casanova</a>
+    <ul class="nav-r">
+      <li><a href="#hero">Inicio</a></li>
+      <li><a href="#gal-e">Obras</a></li>
+      <li><a href="#about">Artista</a></li>
+      <li><a href="#contact">Contacto</a></li>
+    </ul>
+  </nav>
+
+  <!-- ================================================================
+       MAIN SITE CONTENT
+       ================================================================ -->
+  <main class="site" id="site">
+
+    <!-- HERO — Full-screen artwork -->
+    <section class="hero" id="hero">
+      <div class="hero-bg">
+        <img src="img/elegancia-oscura/hero-leon-goat.jpg" alt="The G.O.A.T. — Yari Casanova" class="hero-bg-img">
+        <div class="hero-bg-overlay"></div>
+      </div>
+      <div class="hero-glow" id="heroGlow"></div>
+      <div class="hero-content">
+        <div class="hero-top">
+          <span class="hero-top-tag">Yari Casanova</span>
+          <div class="hero-top-line paint-line"></div>
+        </div>
+        <h1 class="hero-quote">Mi padre era sastre — <span>crecí entre trajes, sacos y dibujos</span></h1>
+        <div class="hero-bottom">
+          <span class="hero-author">Pintura Contemporánea · Gualeguaychú, Entre Ríos</span>
+        </div>
+      </div>
+      <div class="hero-scroll">scroll</div>
+    </section>
+
+    <!-- SERIE BREAK: Elegancia Oscura -->
+    <div class="sb" id="brk-e">
+      <h2 class="sb-title" data-split>Elegancia<br>Oscura</h2>
+      <div class="sb-line paint-line"></div>
+      <p class="sb-desc">Animales con alma de caballeros.<br>El humo, el vino, la mirada.</p>
+    </div>
+
+    <!-- GALLERY: Elegancia Oscura (6 obras) -->
+    <section class="gal" id="gal-e" style="height:1500vh">
+      <div class="gal-vp">
+
+        <!-- Gallery hint -->
+        <div class="gal-hint" data-total="6">
+          <span class="gal-hint-num"><span class="gal-hint-cur">01</span> / 06</span>
+          <div class="gal-hint-scroll">
+            <span>scroll</span>
+            <div class="gal-hint-line">
+              <div class="gal-hint-dot"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 01 — The G.O.A.T. -->
+        <div class="slide">
+          <div class="slide-card" style="height:82vh;width:calc(82vh * 1.221);max-width:92vw" data-lb="0">
+            <img src="img/elegancia-oscura/hero-leon-goat.jpg" alt="The G.O.A.T." loading="lazy">
+            <div class="slide-shine"></div>
+            <div class="slide-grad"></div>
+            <div class="slide-info">
+              <p class="slide-med">Acrílico sobre tela · 120 x 100 cm · 2025</p>
+              <h3 class="slide-title">The G.O.A.T.</h3>
+              <p class="slide-sub">El león que no necesita presentación</p>
+            </div>
+            <div class="slide-zoom">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5">
+                <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 02 — El Padrino -->
+        <div class="slide">
+          <div class="slide-card" style="width:min(86vw, calc(76vh * 0.792));height:calc(min(86vw, calc(76vh * 0.792)) / 0.792)" data-lb="1">
+            <img src="img/elegancia-oscura/leon-cigarro-vino.jpg" alt="El Padrino" loading="lazy">
+            <div class="slide-shine"></div>
+            <div class="slide-grad"></div>
+            <div class="slide-info">
+              <p class="slide-med">Acrílico sobre tela · 100 x 80 cm</p>
+              <h3 class="slide-title">El Padrino</h3>
+              <p class="slide-sub">El humo del cigarro, la mirada que lo dice todo</p>
+            </div>
+            <div class="slide-zoom">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5">
+                <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 03 — El Heredero -->
+        <div class="slide">
+          <div class="slide-card" style="height:82vh;width:calc(82vh * 1.208);max-width:92vw" data-lb="2">
+            <img src="img/elegancia-oscura/dalmata-sillon.jpg" alt="El Heredero" loading="lazy">
+            <div class="slide-shine"></div>
+            <div class="slide-grad"></div>
+            <div class="slide-info">
+              <p class="slide-med">Acrílico sobre tela · 120 x 100 cm · 2025</p>
+              <h3 class="slide-title">El Heredero</h3>
+              <p class="slide-sub">La elegancia no se enseña, se lleva en la piel</p>
+            </div>
+            <div class="slide-zoom">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5">
+                <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 04 — Don Corleone -->
+        <div class="slide">
+          <div class="slide-card" style="height:82vh;width:calc(82vh * 1.267);max-width:92vw" data-lb="3">
+            <img src="img/elegancia-oscura/bulldog-padrino.jpg" alt="Don Corleone" loading="lazy">
+            <div class="slide-shine"></div>
+            <div class="slide-grad"></div>
+            <div class="slide-info">
+              <p class="slide-med">Acrílico sobre tela · 100 x 80 cm · 2024</p>
+              <h3 class="slide-title">Don Corleone</h3>
+              <p class="slide-sub">El poder se ejerce en silencio</p>
+            </div>
+            <div class="slide-zoom">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5">
+                <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 05 — El Gran Gatsby -->
+        <div class="slide">
+          <div class="slide-card" style="height:82vh;width:calc(82vh * 1.373);max-width:92vw" data-lb="4">
+            <img src="img/elegancia-oscura/tigre-blanco.jpg" alt="El Gran Gatsby" loading="lazy">
+            <div class="slide-shine"></div>
+            <div class="slide-grad"></div>
+            <div class="slide-info">
+              <p class="slide-med">Acrílico sobre tela · 150 x 110 cm</p>
+              <h3 class="slide-title">El Gran Gatsby</h3>
+              <p class="slide-sub">Traje blanco, alma salvaje</p>
+            </div>
+            <div class="slide-zoom">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5">
+                <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 06 — El Embajador -->
+        <div class="slide">
+          <div class="slide-card" style="width:min(86vw, calc(76vh * 0.75));height:calc(min(86vw, calc(76vh * 0.75)) / 0.75)" data-lb="5">
+            <img src="img/elegancia-oscura/braco-smoking.jpg" alt="El Embajador" loading="lazy">
+            <div class="slide-shine"></div>
+            <div class="slide-grad"></div>
+            <div class="slide-info">
+              <p class="slide-med">Acrílico sobre tela · 100 x 80 cm</p>
+              <h3 class="slide-title">El Embajador</h3>
+              <p class="slide-sub">Diplomacia con colmillos</p>
+            </div>
+            <div class="slide-zoom">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5">
+                <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- QUOTE BREAK — Single, strongest quote -->
+    <div class="qb" id="qb1">
+      <div class="qb-glow"></div>
+      <div class="qb-content">
+        <div class="qb-line paint-line"></div>
+        <p class="qb-text paint-text">El león es un animal muy noble, muy sabio. Tiene dos lados muy marcados: es cariñoso con su familia, pero si tiene un enemigo es feroz.</p>
+        <p class="qb-attr">Yari Casanova</p>
+      </div>
+    </div>
+
+    <!-- SERIE BREAK: El Rugido Urbano -->
+    <div class="sb" id="brk-s">
+      <h2 class="sb-title" data-split>El Rugido<br>Urbano</h2>
+      <div class="sb-line paint-line"></div>
+      <p class="sb-desc">Donde el spray se encuentra con el óleo.<br>Bestias que no piden permiso.</p>
+    </div>
+
+    <!-- GALLERY: El Rugido Urbano (4 obras) -->
+    <section class="gal" id="gal-s" style="height:1000vh">
+      <div class="gal-vp">
+
+        <!-- Gallery hint -->
+        <div class="gal-hint" data-total="4">
+          <span class="gal-hint-num"><span class="gal-hint-cur">01</span> / 04</span>
+          <div class="gal-hint-scroll">
+            <span>scroll</span>
+            <div class="gal-hint-line">
+              <div class="gal-hint-dot"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 07 — Art Is Not a Crime -->
+        <div class="slide">
+          <div class="slide-card" style="width:min(86vw, calc(76vh * 0.627));height:calc(min(86vw, calc(76vh * 0.627)) / 0.627)" data-lb="6">
+            <img src="img/rugido-urbano/leon-rugiendo.jpg" alt="Art Is Not a Crime" loading="lazy">
+            <div class="slide-shine"></div>
+            <div class="slide-grad"></div>
+            <div class="slide-info">
+              <p class="slide-med">Acrílico sobre tela · 120 x 80 cm</p>
+              <h3 class="slide-title">Art Is Not a Crime</h3>
+              <p class="slide-sub">Donde el spray se encuentra con el óleo</p>
+            </div>
+            <div class="slide-zoom">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5">
+                <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 08 — Hood Life -->
+        <div class="slide">
+          <div class="slide-card" style="width:min(86vw, calc(76vh * 0.734));height:calc(min(86vw, calc(76vh * 0.734)) / 0.734)" data-lb="7">
+            <img src="img/rugido-urbano/leon-hoodie.jpg" alt="Hood Life" loading="lazy">
+            <div class="slide-shine"></div>
+            <div class="slide-grad"></div>
+            <div class="slide-info">
+              <p class="slide-med">Acrílico sobre tela · 100 x 70 cm · 2020</p>
+              <h3 class="slide-title">Hood Life</h3>
+              <p class="slide-sub">La calle como lienzo</p>
+            </div>
+            <div class="slide-zoom">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5">
+                <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 09 — Rebel Soul -->
+        <div class="slide">
+          <div class="slide-card" style="width:min(86vw, calc(76vh * 0.644));height:calc(min(86vw, calc(76vh * 0.644)) / 0.644)" data-lb="8">
+            <img src="img/rugido-urbano/leon-dreads.jpg" alt="Rebel Soul" loading="lazy">
+            <div class="slide-shine"></div>
+            <div class="slide-grad"></div>
+            <div class="slide-info">
+              <p class="slide-med">Acrílico sobre tela · 100 x 70 cm · 2022</p>
+              <h3 class="slide-title">Rebel Soul</h3>
+              <p class="slide-sub">Cuero, spray y actitud</p>
+            </div>
+            <div class="slide-zoom">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5">
+                <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10 — El Outsider -->
+        <div class="slide">
+          <div class="slide-card" style="width:min(86vw, calc(76vh * 0.811));height:calc(min(86vw, calc(76vh * 0.811)) / 0.811)" data-lb="9">
+            <img src="img/rugido-urbano/jabali-tiradores.jpg" alt="El Outsider" loading="lazy">
+            <div class="slide-shine"></div>
+            <div class="slide-grad"></div>
+            <div class="slide-info">
+              <p class="slide-med">Acrílico sobre tela · 100 x 80 cm</p>
+              <h3 class="slide-title">El Outsider</h3>
+              <p class="slide-sub">No encaja, y esa es su fuerza</p>
+            </div>
+            <div class="slide-zoom">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.4)" stroke-width="1.5">
+                <circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="21" y2="21"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about" id="about">
+      <div class="about-inner">
+        <div class="about-left">
+          <div class="about-tag">El artista</div>
+          <h2 class="about-name">Yari<br>Casanova</h2>
+          <p class="about-loc">Gualeguaychú · Entre Ríos</p>
+          <p class="about-year">b. 1981 · Arte figurativo surrealista pop</p>
+          <div class="about-links">
+            <a href="https://instagram.com/yaricasanova" target="_blank" rel="noopener">Instagram</a>
+            <a href="mailto:yari@casanova.art">Email</a>
+          </div>
+
+          <!-- Social proof — prominent -->
+          <div class="about-proof">
+            <p class="about-proof-tag">Obras en colecciones de</p>
+            <ul class="about-proof-list">
+              <li>Michael Bublé &amp; Luisana Lopilato</li>
+              <li>Fernando Burlando</li>
+              <li>Benito Fernández</li>
+              <li>Presidencia de la Nación Argentina</li>
+            </ul>
+          </div>
+        </div>
+        <div class="about-divider paint-line"></div>
+        <div class="about-right">
+          <p class="about-p">Nací en <strong>Gualeguaychú, Entre Ríos</strong>, una ciudad que formó a cientos de pintores, escritores y músicos de gran renombre. Desde muy temprana edad estuve vinculado con el arte a través del dibujo, la pintura y la escultura.</p>
+          <p class="about-p">Soy autodidacta. Fui experimentando con el pincel haciendo reproducciones de <strong>Dalí, Miró, Molina Campos y Pollock</strong>. Mientras cursaba Arquitectura en la UBA, montamos un taller donde creamos obras plásticas, maquetas e instalaciones.</p>
+          <p class="about-p">Definiría mi trabajo como <strong>arte figurativo surrealista pop</strong> — animales humanizados en situaciones cotidianas. Me fascina la búsqueda constante de nuevas texturas, brillos y colores.</p>
+          <p class="about-closing">Los invito a conocer mi obra.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT — Art market language -->
+    <section class="contact" id="contact">
+      <div class="contact-tag">Adquirir una obra</div>
+      <em class="contact-title paint-text">Hablemos</em>
+      <p class="contact-desc">Consultas sobre obras disponibles, comisiones personalizadas y envíos a todo el mundo.</p>
+      <a href="mailto:yari@casanova.art?subject=Consulta%20sobre%20obra" class="contact-email">yari@casanova.art</a>
+      <div class="contact-social">
+        <a href="https://instagram.com/yaricasanova" target="_blank" rel="noopener">Instagram</a>
+        <a href="https://behance.net/yaricasanova" target="_blank" rel="noopener">Behance</a>
+      </div>
+      <div class="contact-copy">&copy; <span id="cpYear"></span> Yari Casanova — Todos los derechos reservados</div>
+    </section>
+
+  </main>
+
+  <!-- Libraries -->
+  <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.7/dist/ScrollTrigger.min.js"></script>
+
+  <!-- Scripts -->
+  <script src="js/main.js"></script>
+
+</body>
+</html>
