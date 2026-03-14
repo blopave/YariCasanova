@@ -443,6 +443,12 @@ body {
   z-index: 0;
 }
 
+.hero-bg picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
 .hero-bg-img {
   width: 100%;
   height: 100%;
@@ -778,6 +784,14 @@ body {
   perspective: 800px;
 }
 
+.slide-card picture {
+  display: block;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  inset: 0;
+}
+
 .slide-card img {
   width: 100%; height: 100%;
   object-fit: cover;
@@ -905,6 +919,9 @@ body {
   cursor: pointer;
   z-index: 3;
   transition: opacity .3s;
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 .lb-close:hover { opacity: .5; }
@@ -1028,6 +1045,9 @@ body {
   cursor: pointer;
   transition: opacity .3s;
   z-index: 3;
+  background: none;
+  border: none;
+  padding: 0;
 }
 
 .lb-nav:hover { opacity: .6; }

@@ -6,12 +6,24 @@
   <title>Yari Casanova — Pintura Contemporánea</title>
   <meta name="description" content="Yari Casanova. Arte figurativo surrealista pop. Animales humanizados en acrílico sobre tela. Gualeguaychú, Entre Ríos.">
 
-  <!-- Open Graph -->
+  <!-- Theme & Favicon -->
+  <meta name="theme-color" content="#0a0a0a">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="img/elegancia-oscura/hero-leon-goat.jpg">
+
+  <!-- Canonical & Open Graph -->
+  <link rel="canonical" href="https://yaricasanova.com/">
   <meta property="og:title" content="Yari Casanova — Pintura Contemporánea">
   <meta property="og:description" content="Arte figurativo surrealista pop. Animales humanizados en situaciones cotidianas. Obras en colecciones de Michael Bublé, Presidencia de la Nación y más.">
-  <meta property="og:image" content="img/elegancia-oscura/hero-leon-goat.jpg">
+  <meta property="og:image" content="https://yaricasanova.com/img/elegancia-oscura/hero-leon-goat.jpg">
+  <meta property="og:url" content="https://yaricasanova.com/">
   <meta property="og:type" content="website">
+  <meta property="og:locale" content="es_AR">
   <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Preload hero image -->
+  <link rel="preload" href="img/elegancia-oscura/hero-leon-goat.webp" as="image" type="image/webp">
+  <link rel="preload" href="img/elegancia-oscura/hero-leon-goat.jpg" as="image">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,6 +35,16 @@
 
   <!-- Styles -->
   <link rel="stylesheet" href="css/styles.css">
+
+  <!-- Analytics — descomentar cuando tengas tu ID de GA4
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
 </head>
 <body>
 
@@ -61,23 +83,23 @@
   <!-- ================================================================
        LIGHTBOX
        ================================================================ -->
-  <div class="lb" id="lb">
-    <div class="lb-close" id="lbClose">
+  <div class="lb" id="lb" role="dialog" aria-label="Visor de obra" aria-modal="true">
+    <button class="lb-close" id="lbClose" aria-label="Cerrar visor">
       <svg viewBox="0 0 24 24" fill="none" stroke="rgba(240,235,228,.4)" stroke-width="1.5">
         <line x1="4" y1="4" x2="20" y2="20"/>
         <line x1="20" y1="4" x2="4" y2="20"/>
       </svg>
-    </div>
-    <div class="lb-nav lb-prev" id="lbPrev">
+    </button>
+    <button class="lb-nav lb-prev" id="lbPrev" aria-label="Obra anterior">
       <svg viewBox="0 0 24 24" fill="none" stroke="rgba(240,235,228,.3)" stroke-width="1.5">
         <polyline points="15 18 9 12 15 6"/>
       </svg>
-    </div>
-    <div class="lb-nav lb-next" id="lbNext">
+    </button>
+    <button class="lb-nav lb-next" id="lbNext" aria-label="Obra siguiente">
       <svg viewBox="0 0 24 24" fill="none" stroke="rgba(240,235,228,.3)" stroke-width="1.5">
         <polyline points="9 6 15 12 9 18"/>
       </svg>
-    </div>
+    </button>
     <div class="lb-img-wrap">
       <img class="lb-img" id="lbImg" src="" alt="">
     </div>
@@ -128,7 +150,10 @@
     <!-- HERO — Full-screen artwork -->
     <section class="hero" id="hero">
       <div class="hero-bg">
-        <img src="img/elegancia-oscura/hero-leon-goat.jpg" alt="The G.O.A.T. — Yari Casanova" class="hero-bg-img">
+        <picture>
+          <source srcset="img/elegancia-oscura/hero-leon-goat.webp" type="image/webp">
+          <img src="img/elegancia-oscura/hero-leon-goat.jpg" alt="The G.O.A.T. — Yari Casanova" class="hero-bg-img" width="1200" height="983" fetchpriority="high">
+        </picture>
         <div class="hero-bg-overlay"></div>
       </div>
       <div class="hero-glow" id="heroGlow"></div>
@@ -170,7 +195,10 @@
         <!-- 01 — The G.O.A.T. -->
         <div class="slide">
           <div class="slide-card" style="height:82vh;width:calc(82vh * 1.221);max-width:92vw" data-lb="0">
-            <img src="img/elegancia-oscura/hero-leon-goat.jpg" alt="The G.O.A.T." loading="lazy">
+            <picture>
+              <source srcset="img/elegancia-oscura/hero-leon-goat.webp" type="image/webp">
+              <img src="img/elegancia-oscura/hero-leon-goat.jpg" alt="The G.O.A.T." loading="lazy" width="1200" height="983">
+            </picture>
             <div class="slide-shine"></div>
             <div class="slide-grad"></div>
             <div class="slide-info">
@@ -189,7 +217,10 @@
         <!-- 02 — El Padrino -->
         <div class="slide">
           <div class="slide-card" style="width:min(86vw, calc(76vh * 0.792));height:calc(min(86vw, calc(76vh * 0.792)) / 0.792)" data-lb="1">
-            <img src="img/elegancia-oscura/leon-cigarro-vino.jpg" alt="El Padrino" loading="lazy">
+            <picture>
+              <source srcset="img/elegancia-oscura/leon-cigarro-vino.webp" type="image/webp">
+              <img src="img/elegancia-oscura/leon-cigarro-vino.jpg" alt="El Padrino" loading="lazy" width="951" height="1200">
+            </picture>
             <div class="slide-shine"></div>
             <div class="slide-grad"></div>
             <div class="slide-info">
@@ -208,7 +239,10 @@
         <!-- 03 — El Heredero -->
         <div class="slide">
           <div class="slide-card" style="height:82vh;width:calc(82vh * 1.208);max-width:92vw" data-lb="2">
-            <img src="img/elegancia-oscura/dalmata-sillon.jpg" alt="El Heredero" loading="lazy">
+            <picture>
+              <source srcset="img/elegancia-oscura/dalmata-sillon.webp" type="image/webp">
+              <img src="img/elegancia-oscura/dalmata-sillon.jpg" alt="El Heredero" loading="lazy" width="1200" height="993">
+            </picture>
             <div class="slide-shine"></div>
             <div class="slide-grad"></div>
             <div class="slide-info">
@@ -227,7 +261,10 @@
         <!-- 04 — Don Corleone -->
         <div class="slide">
           <div class="slide-card" style="height:82vh;width:calc(82vh * 1.267);max-width:92vw" data-lb="3">
-            <img src="img/elegancia-oscura/bulldog-padrino.jpg" alt="Don Corleone" loading="lazy">
+            <picture>
+              <source srcset="img/elegancia-oscura/bulldog-padrino.webp" type="image/webp">
+              <img src="img/elegancia-oscura/bulldog-padrino.jpg" alt="Don Corleone" loading="lazy" width="1200" height="947">
+            </picture>
             <div class="slide-shine"></div>
             <div class="slide-grad"></div>
             <div class="slide-info">
@@ -246,7 +283,10 @@
         <!-- 05 — El Gran Gatsby -->
         <div class="slide">
           <div class="slide-card" style="height:82vh;width:calc(82vh * 1.373);max-width:92vw" data-lb="4">
-            <img src="img/elegancia-oscura/tigre-blanco.jpg" alt="El Gran Gatsby" loading="lazy">
+            <picture>
+              <source srcset="img/elegancia-oscura/tigre-blanco.webp" type="image/webp">
+              <img src="img/elegancia-oscura/tigre-blanco.jpg" alt="El Gran Gatsby" loading="lazy" width="1200" height="874">
+            </picture>
             <div class="slide-shine"></div>
             <div class="slide-grad"></div>
             <div class="slide-info">
@@ -265,7 +305,10 @@
         <!-- 06 — El Embajador -->
         <div class="slide">
           <div class="slide-card" style="width:min(86vw, calc(76vh * 0.75));height:calc(min(86vw, calc(76vh * 0.75)) / 0.75)" data-lb="5">
-            <img src="img/elegancia-oscura/braco-smoking.jpg" alt="El Embajador" loading="lazy">
+            <picture>
+              <source srcset="img/elegancia-oscura/braco-smoking.webp" type="image/webp">
+              <img src="img/elegancia-oscura/braco-smoking.jpg" alt="El Embajador" loading="lazy" width="900" height="1200">
+            </picture>
             <div class="slide-shine"></div>
             <div class="slide-grad"></div>
             <div class="slide-info">
@@ -319,7 +362,10 @@
         <!-- 07 — Art Is Not a Crime -->
         <div class="slide">
           <div class="slide-card" style="width:min(86vw, calc(76vh * 0.627));height:calc(min(86vw, calc(76vh * 0.627)) / 0.627)" data-lb="6">
-            <img src="img/rugido-urbano/leon-rugiendo.jpg" alt="Art Is Not a Crime" loading="lazy">
+            <picture>
+              <source srcset="img/rugido-urbano/leon-rugiendo.webp" type="image/webp">
+              <img src="img/rugido-urbano/leon-rugiendo.jpg" alt="Art Is Not a Crime" loading="lazy" width="752" height="1200">
+            </picture>
             <div class="slide-shine"></div>
             <div class="slide-grad"></div>
             <div class="slide-info">
@@ -338,7 +384,10 @@
         <!-- 08 — Hood Life -->
         <div class="slide">
           <div class="slide-card" style="width:min(86vw, calc(76vh * 0.734));height:calc(min(86vw, calc(76vh * 0.734)) / 0.734)" data-lb="7">
-            <img src="img/rugido-urbano/leon-hoodie.jpg" alt="Hood Life" loading="lazy">
+            <picture>
+              <source srcset="img/rugido-urbano/leon-hoodie.webp" type="image/webp">
+              <img src="img/rugido-urbano/leon-hoodie.jpg" alt="Hood Life" loading="lazy" width="881" height="1200">
+            </picture>
             <div class="slide-shine"></div>
             <div class="slide-grad"></div>
             <div class="slide-info">
@@ -357,7 +406,10 @@
         <!-- 09 — Rebel Soul -->
         <div class="slide">
           <div class="slide-card" style="width:min(86vw, calc(76vh * 0.644));height:calc(min(86vw, calc(76vh * 0.644)) / 0.644)" data-lb="8">
-            <img src="img/rugido-urbano/leon-dreads.jpg" alt="Rebel Soul" loading="lazy">
+            <picture>
+              <source srcset="img/rugido-urbano/leon-dreads.webp" type="image/webp">
+              <img src="img/rugido-urbano/leon-dreads.jpg" alt="Rebel Soul" loading="lazy" width="773" height="1200">
+            </picture>
             <div class="slide-shine"></div>
             <div class="slide-grad"></div>
             <div class="slide-info">
@@ -376,7 +428,10 @@
         <!-- 10 — El Outsider -->
         <div class="slide">
           <div class="slide-card" style="width:min(86vw, calc(76vh * 0.811));height:calc(min(86vw, calc(76vh * 0.811)) / 0.811)" data-lb="9">
-            <img src="img/rugido-urbano/jabali-tiradores.jpg" alt="El Outsider" loading="lazy">
+            <picture>
+              <source srcset="img/rugido-urbano/jabali-tiradores.webp" type="image/webp">
+              <img src="img/rugido-urbano/jabali-tiradores.jpg" alt="El Outsider" loading="lazy" width="973" height="1200">
+            </picture>
             <div class="slide-shine"></div>
             <div class="slide-grad"></div>
             <div class="slide-info">
@@ -443,6 +498,28 @@
     </section>
 
   </main>
+
+  <!-- Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Yari Casanova",
+    "url": "https://yaricasanova.com",
+    "jobTitle": "Artista plástico",
+    "description": "Arte figurativo surrealista pop. Animales humanizados en acrílico sobre tela.",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Gualeguaychú",
+      "addressRegion": "Entre Ríos",
+      "addressCountry": "AR"
+    },
+    "sameAs": [
+      "https://instagram.com/yaricasanova",
+      "https://behance.net/yaricasanova"
+    ]
+  }
+  </script>
 
   <!-- Libraries -->
   <script src="https://unpkg.com/lenis@1.1.18/dist/lenis.min.js"></script>
