@@ -37,6 +37,8 @@
     { src: 'img/elegancia-oscura/bulldog-padrino.jpg', title: 'Don Corleone', sub: 'El poder se ejerce en silencio', med: 'Acrílico sobre tela', dim: '100 x 80 cm', status: 'collection', year: '2024' },
     { src: 'img/elegancia-oscura/tigre-blanco.jpg', title: 'El Gran Gatsby', sub: 'Traje blanco, alma salvaje', med: 'Acrílico sobre tela', dim: '150 x 110 cm', status: 'available', year: '' },
     { src: 'img/elegancia-oscura/braco-smoking.jpg', title: 'El Embajador', sub: 'Diplomacia con colmillos', med: 'Acrílico sobre tela', dim: '100 x 80 cm', status: 'available', year: '' },
+    { src: 'img/leon-mate.jpg', title: 'El Caudillo', sub: 'Whiskey, cigarro y la mirada del que manda', med: 'Acrílico sobre tela', dim: '', status: 'available', year: '2021' },
+    { src: 'img/oso-flores.jpg', title: 'El Magnate', sub: 'Champagne, smoking azul y el trono que le corresponde', med: 'Acrílico sobre tela', dim: '', status: 'available', year: '' },
     { src: 'img/rugido-urbano/leon-rugiendo.jpg', title: 'Art Is Not a Crime', sub: 'Donde el spray se encuentra con el óleo', med: 'Acrílico sobre tela', dim: '120 x 80 cm', status: 'available', year: '' },
     { src: 'img/rugido-urbano/leon-hoodie.jpg', title: 'Hood Life', sub: 'La calle como lienzo', med: 'Acrílico sobre tela', dim: '100 x 70 cm', status: 'collection', year: '2020' },
     { src: 'img/rugido-urbano/leon-dreads.jpg', title: 'Rebel Soul', sub: 'Cuero, spray y actitud', med: 'Acrílico sobre tela', dim: '100 x 70 cm', status: 'available', year: '2022' },
@@ -51,8 +53,10 @@
   var site = document.getElementById('site');
   var nav = document.getElementById('nav');
   var heroGlow = document.getElementById('heroGlow');
-  var skipBtn = document.getElementById('skipBtn');
-  var skipLabel = document.getElementById('skipLabel');
+  var secNav = document.getElementById('secNav');
+  var secPrev = document.getElementById('secPrev');
+  var secNext = document.getElementById('secNext');
+  var secLabel = document.getElementById('secLabel');
   var prog = document.getElementById('prog');
   var cv = document.getElementById('pcv');
   var ctx = cv.getContext('2d');
@@ -374,7 +378,7 @@
       requestAnimationFrame(animateRing);
     })();
 
-    var hoverSel = '.slide-card,.nav-r a,.nav-l,.contact-email,.about-links a,.contact-social a,.skip-btn,.lb-close,.lb-nav,.lb-cta';
+    var hoverSel = '.slide-card,.nav-r a,.nav-l,.contact-email,.about-links a,.contact-social a,.sec-nav-btn,.lb-close,.lb-nav,.lb-cta';
 
     document.addEventListener('mouseover', function (e) {
       if (e.target.closest(hoverSel)) {
@@ -507,17 +511,18 @@
 
   function initAmbient() {
     ambientActive = true;
-    var count = Math.min(20, Math.floor(innerWidth / 80));
+    var count = Math.min(40, Math.floor(innerWidth / 45));
     for (var i = 0; i < count; i++) {
       ambientParticles.push({
         x: Math.random() * cv.width,
         y: Math.random() * cv.height,
-        r: 1.5 + Math.random() * 3,
-        vx: (Math.random() - 0.5) * 0.3,
-        vy: -0.15 - Math.random() * 0.3,
-        a: 0.05 + Math.random() * 0.12,
+        r: 1.5 + Math.random() * 4.5,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: -0.1 - Math.random() * 0.35,
+        a: 0.08 + Math.random() * 0.18,
         c: COLORS[i % COLORS.length].replace(/[\d.]+\)$/, ''),
-        phase: Math.random() * Math.PI * 2
+        phase: Math.random() * Math.PI * 2,
+        drift: 0.2 + Math.random() * 0.4
       });
     }
   }
@@ -527,18 +532,21 @@
     var w = cv.width, h = cv.height;
 
     ambientParticles.forEach(function (p) {
-      p.x += p.vx + Math.sin(t * 0.0005 + p.phase) * 0.15;
-      p.y += p.vy;
-      var pulse = 0.5 + 0.5 * Math.sin(t * 0.001 + p.phase);
+      p.x += p.vx + Math.sin(t * 0.0004 + p.phase) * p.drift;
+      p.y += p.vy + Math.cos(t * 0.0003 + p.phase * 1.5) * 0.08;
+      var pulse = 0.5 + 0.5 * Math.sin(t * 0.0008 + p.phase);
 
       // Wrap around
-      if (p.y < -10) { p.y = h + 10; p.x = Math.random() * w; }
-      if (p.x < -10) p.x = w + 10;
-      if (p.x > w + 10) p.x = -10;
+      if (p.y < -20) { p.y = h + 20; p.x = Math.random() * w; }
+      if (p.x < -20) p.x = w + 20;
+      if (p.x > w + 20) p.x = -20;
+
+      var radius = p.r * (0.7 + pulse * 0.5);
+      var alpha = p.a * (0.4 + pulse * 0.6);
 
       ctx.beginPath();
-      ctx.arc(p.x, p.y, p.r * (0.8 + pulse * 0.4), 0, Math.PI * 2);
-      ctx.fillStyle = p.c + (p.a * (0.5 + pulse * 0.5)) + ')';
+      ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+      ctx.fillStyle = p.c + alpha + ')';
       ctx.fill();
     });
   }
@@ -665,6 +673,13 @@
   document.addEventListener('click', triggerIntro);
   if (isTouch) document.addEventListener('touchend', triggerIntro);
 
+  // Auto-skip intro on mobile after 3.5s
+  if (isTouch) {
+    setTimeout(function () {
+      if (!intro.classList.contains('go')) triggerIntro();
+    }, 3500);
+  }
+
   /* -----------------------------------------------------------------------
      NAVIGATION — HOME RESET
      ----------------------------------------------------------------------- */
@@ -707,6 +722,29 @@
       });
     });
   });
+
+  /* -----------------------------------------------------------------------
+     NAVIGATION — HAMBURGER MENU (mobile)
+     ----------------------------------------------------------------------- */
+  var navBurger = document.getElementById('navBurger');
+  var navMenu = document.getElementById('navMenu');
+
+  if (navBurger) {
+    navBurger.addEventListener('click', function () {
+      var isOpen = navBurger.classList.toggle('open');
+      navMenu.classList.toggle('open');
+      navBurger.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+    });
+
+    // Close menu when a link is clicked
+    navMenu.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        navBurger.classList.remove('open');
+        navMenu.classList.remove('open');
+        navBurger.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
 
   /* -----------------------------------------------------------------------
      NAVIGATION — TRANSITION OVERLAY
@@ -868,18 +906,18 @@
   });
 
   /* -----------------------------------------------------------------------
-     SKIP BUTTON
+     SECTION NAVIGATION
      ----------------------------------------------------------------------- */
-  function getNextSection() {
-    var wh = window.innerHeight, best = null, bestD = Infinity;
-    for (var i = 0; i < sectionOrder.length; i++) {
-      var el = document.getElementById(sectionOrder[i]);
-      if (!el) continue;
-      var d = el.getBoundingClientRect().top;
-      if (d > wh * 0.25 && d < bestD) { bestD = d; best = sectionOrder[i]; }
-    }
-    return best;
-  }
+  var sectionLabels = {
+    'hero': 'Inicio',
+    'brk-e': 'Elegancia Oscura',
+    'gal-e': 'Galería I',
+    'qb1': 'Cita',
+    'brk-s': 'Rugido Urbano',
+    'gal-s': 'Galería II',
+    'about': 'Artista',
+    'contact': 'Contacto'
+  };
 
   function getCurrentSection() {
     var wh = window.innerHeight;
@@ -891,17 +929,40 @@
     return sectionOrder[0];
   }
 
-  skipBtn.addEventListener('click', function (e) {
-    e.preventDefault();
-    var next = getNextSection();
-    if (next) {
-      var el = document.getElementById(next);
-      if (lenis) {
-        lenis.scrollTo(el, { duration: 1.5 });
-      } else {
-        el.scrollIntoView({ behavior: 'smooth' });
-      }
+  function getCurrentSectionIndex() {
+    var cur = getCurrentSection();
+    return sectionOrder.indexOf(cur);
+  }
+
+  function getNextSection() {
+    var idx = getCurrentSectionIndex();
+    return idx < sectionOrder.length - 1 ? sectionOrder[idx + 1] : null;
+  }
+
+  function getPrevSection() {
+    var idx = getCurrentSectionIndex();
+    return idx > 0 ? sectionOrder[idx - 1] : null;
+  }
+
+  function scrollToSection(id) {
+    if (!id) return;
+    var el = document.getElementById(id);
+    if (!el) return;
+    if (lenis) {
+      lenis.scrollTo(el, { duration: 1.5 });
+    } else {
+      el.scrollIntoView({ behavior: 'smooth' });
     }
+  }
+
+  secNext.addEventListener('click', function (e) {
+    e.preventDefault();
+    scrollToSection(getNextSection());
+  });
+
+  secPrev.addEventListener('click', function (e) {
+    e.preventDefault();
+    scrollToSection(getPrevSection());
   });
 
   /* -----------------------------------------------------------------------
@@ -995,12 +1056,16 @@
     chkVis();
 
     var cur = getCurrentSection();
-    var inGal = cur === 'gal-e' || cur === 'gal-s';
-    var next = getNextSection();
-    var show = site.style.display !== 'none' && next && cur !== 'contact';
+    var idx = sectionOrder.indexOf(cur);
+    var show = site.style.display !== 'none';
 
-    skipBtn.classList.toggle('on', !!show);
-    if (show) skipLabel.textContent = inGal ? 'Saltar galería' : 'Siguiente';
+    secNav.classList.toggle('on', show);
+
+    if (show) {
+      secLabel.textContent = sectionLabels[cur] || '';
+      secPrev.disabled = idx <= 0;
+      secNext.disabled = idx >= sectionOrder.length - 1;
+    }
   }
 
   var tck = false;
